@@ -1,4 +1,4 @@
-## Seq2seq Model Used for Rewriter (# Anonymized during review #)
+## Seq2seq Model Used for Rewriter (# Anonymized #)
 
 *Requirements* 
 - bert-base-uncased.30522.768d.vec ([download here](https://github.com/google-research/bert). Put bert-base-uncased.30522.768d.vec in the main directory.)
