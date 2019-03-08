@@ -1,4 +1,3 @@
- #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 from Encoder import EncoderLSTM 
 from Decoder import DecoderLSTM 
@@ -47,11 +46,9 @@ def data_preparetion(input_txt, output_txt, limit_x, limit_y):
             data_x1.append(x)
             data_y1.append(y)
     
-    print "The final data amount is %d"%len(data_x1) 
-
+    print "The final data amount is %d"%len(data_x1)
     data_x = data_x1
     data_y = data_y1
-    
     return data_x, data_y
 
 def unk_token(word2id, id2word, word_freq, word_vectors):
@@ -133,8 +130,8 @@ def batch_padded(seq_ids):
 
 def args_init():
     parser=argparse.ArgumentParser()
-    parser.add_argument('--input'.encode('utf-8'), type=str, default='input_x.txt')
-    parser.add_argument('--output'.encode('utf-8'), type=str, default='output_y.txt')
+    parser.add_argument('--input'.encode('utf-8'), type=str, default='source.txt')
+    parser.add_argument('--output'.encode('utf-8'), type=str, default='target.txt')
     return parser.parse_args()
 
 #%%
@@ -334,22 +331,3 @@ if __name__ == '__main__':
                 print "################################"
         torch.save(encoder, './save_model/encoder_beam%d_vocab_sz%d_bz%d'%(conf.beam, conf.vocab_size, conf.batch_size))
         torch.save(decoder, './save_model/decoder_beam%d_vocab_sz%d_bz%d'%(conf.beam, conf.vocab_size, conf.batch_size))
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
