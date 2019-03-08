@@ -1,4 +1,3 @@
-#!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 import multiprocessing    
 import numpy as np
@@ -9,10 +8,8 @@ import gensim
 
 import config
 conf = config.config()
-
 def word2vec(data, use_bert=False, use_glove=False):
     print "word2vec training starting..."
-    
     # set parameters:
     emb_dim = conf.emb_dim
     '''
@@ -43,7 +40,6 @@ def word2vec(data, use_bert=False, use_glove=False):
                         allow_update=True)
     
     specials = ['PAD','END','BOS','UNK']+['UNK'+str(i) for i in range(1, conf.nb_unk+1)]
-    
     word2id = {v: i+len(specials) for i, v in gensim_dict.items()}
     ###########################################################################
     if use_bert:
@@ -83,7 +79,7 @@ def word2vec(data, use_bert=False, use_glove=False):
     if use_glove:
         print "glove embedding loading..."
         embedding_weights_=[]
-        glo = gensim.models.KeyedVectors.load_word2vec_format("~/Desktop/all/desk/glove.6B/glove.6B.300d.txt", binary=False)
+        glo = gensim.models.KeyedVectors.load_word2vec_format("~/glove.6B/glove.6B.300d.txt", binary=False)
         for i in range(len(embedding_weights)):
             try:
                 embedding_weights_.append(glo[id2word[i]])
@@ -91,5 +87,4 @@ def word2vec(data, use_bert=False, use_glove=False):
                 embedding_weights_.append(np.random.randn(300))
         embedding_weights = np.array(embedding_weights_)
         print "glove loading is down!"
-        
     return word2id, id2word, word_vectors, embedding_weights, word_freq, len(specials)
